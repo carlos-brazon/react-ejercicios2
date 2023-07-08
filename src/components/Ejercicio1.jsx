@@ -16,10 +16,8 @@ export default function Counter({ number }) {
         setCounter2(prev => prev += 1);
     }
 
-
     return (
         <div className="flex justify-center items-center bg-slate-300 w-96 h-52">
-
             <div className="flex gap-4">
                 <button style={{ backgroundColor: `${colors[backgroundCo]}` }} onClick={btn1} className={`p-3 rounded text-3xl border-red-600 focus:border-8`}>{counter} Likes</button>
                 <button style={{ backgroundColor: `${colors[backgroundCo2]}` }} onClick={btn2} className={`p-3 rounded text-3xl border-red-600 focus:border-8`}>{counter2} Likes</button>

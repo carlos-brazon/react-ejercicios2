@@ -11,7 +11,7 @@ const Ejercicio3PokeList = ({ url, id }) => {
 	const getPika = async () => {
 		console.log();
 		try {
-			const responsePika = await fetch(`https://pokeapi.co/api/v2/pokemon/25`);
+			const responsePika = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
 			const datapika = await responsePika.json();
 			setPika(datapika)
 
@@ -28,21 +28,25 @@ const Ejercicio3PokeList = ({ url, id }) => {
 			const response = await fetch(poke.url);
 			return await response.json();
 		}))
-
-		setPokemon(allPoke)
+		
 		setTimeout(function () {
 			setLoading(false)
-		}, 1100);
-	}
+		}, 1000);
 
+		return allPoke
+	}
+	
 	useEffect(() => {
 		getPika()
-		getPokemon(url)
+		const setPoke = async () => setPokemon( await getPokemon(url))
+		setPoke()
+		
 	}, []);
 
-	const handleClick = () => {
-		setMorePokemon(prev => prev += 10)
-		getPokemon(`https://pokeapi.co/api/v2/pokemon/?offset=${morePokemon}&limit=10`);
+	const handleClick = async () => {
+		setMorePokemon(prev => prev += 10);
+		const tenMore = await getPokemon(`https://pokeapi.co/api/v2/pokemon/?offset=${morePokemon}&limit=10`);
+		setPokemon(prev=> [...prev, ...tenMore] )
 	}
 
 	return (
