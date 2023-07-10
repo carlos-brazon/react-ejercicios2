@@ -56,7 +56,7 @@ const Ejercicio3PokeList = ({ url, id }) => {
 				<button onClick={handleClick} className='p-4 rounded-lg bg-slate-100 text-xl'>Give me more!</button>
 				<div className='flex flex-wrap gap-6'>
 					{
-						loading ? '' : pika ? <PokeCard pokemon={pika} setPika={setPika} /> : ''
+						loading ? null : pika && <PokeCard pokemon={pika} setPika={setPika} /> 
 					}
 					{
 						loading ? <div className="lds-spinner"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div> : pokemon.map((poke, i) => <PokeCard key={i} pokemon={poke} setPokemon={setPokemon} />)
